@@ -1,0 +1,37 @@
+<div class="container-fluid">
+
+  <div class="row" *ngIf="items">
+    <div class="col-md-4 card p-2 m-2" *ngFor="let item of items">
+      <span class="card-header">{{item.title}}</span>
+      <div class="row card-body">
+        <div class="col-md-8">
+          <div class="list-group">
+            <span class="list-group-item">Price <span class="alert-info p-1">{{item.price}} DH</span></span>
+            <span class="list-group-item">QTE <span class="alert-info p-1">{{item.quantity}}</span></span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img class="w-100" alt="" src="https://media.istockphoto.com/photos/4k-ultra-hd-icon-picture-id512631960?k=20&m=512631960&s=170667a&w=0&h=pjDVHE4D1k2pSznft5bD3waPMc81HS_zbKQ9zqyl4cY=" />
+        </div>
+      </div>
+
+      <button (click)="onToggleView(item.id, true)" id="reserveBtn-{{item.id}}" class="btn btn-primary d-flex justify-content-center">Reserve</button>
+      <button (click)="onToggleView(item.id, false)" id="cancelBtn-{{item.id}}" class="btn btn-warning d-flex justify-content-center visually-hidden">Cancel</button>
+
+      <div id="reserveForm-{{item.id}}" class="visually-hidden">
+        <form #f="ngForm" (ngSubmit)="onReserveItem(f.value, item.id)">
+          <div class="form-label">
+            Select User <select name="userId" class="form-control" ngModel>
+            <option value="">None</option>
+            <option value="1">Hamza</option>
+            <option value="2">Ahmed</option>
+          </select>
+          </div>
+          <input type="submit" value="Confirm" class="btn btn-success">
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>

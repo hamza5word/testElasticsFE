@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>UserName</th>
+        <th>Reservations</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="users">
+      <tr *ngFor="let user of users">
+        <td>{{user.name}}</td>
+        <td>
+          <span *ngFor="let r of user.reservations">
+            <a href="#">{{r}}</a>,
+          </span>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
