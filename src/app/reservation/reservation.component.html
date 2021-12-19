@@ -1,0 +1,41 @@
+<div class="row p-2 m-2">
+  <div class="col-md-6">
+    <h3 class="text-center">Reservations List</h3>
+    <div class="card card-body">
+      <table class="table-borderless">
+        <thead class="border-bottom">
+          <tr class="">
+            <td>Reservation Date</td>
+            <td>Reservation User</td>
+            <td>Reservation Item</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody *ngIf="reservations">
+          <tr *ngFor="let r of reservations">
+            <th>{{r.date}}</th>
+            <td>{{r.user.name}}</td>
+            <td>{{r.item.title}}</td>
+            <td><button
+              [ngClass]="r == selectedReservation ? 'btn-warning': 'btn-primary'"
+              (click)="onSelectReservation(r)" class="btn">
+              {{r == selectedReservation ? 'Selected': 'Select'}}
+            </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="col-md-6">
+    <h3 class="text-center">Reservation Infos</h3>
+    <div class="container" *ngIf="selectedReservation">
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Date</strong> : {{selectedReservation.date}}</li>
+      </ul>
+      <app-user-details [user]="selectedReservation.user"></app-user-details>
+      <app-item-details [item]="selectedReservation.item"></app-item-details>
+    </div>
+  </div>
+</div>

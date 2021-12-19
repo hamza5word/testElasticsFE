@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-center m-2" *ngIf="message && message.text">
+
+  <span class="container alert w-100 text-center" [ngClass]="onGetStyle(message.type)">{{message.text}}</span>
+
+</div>
