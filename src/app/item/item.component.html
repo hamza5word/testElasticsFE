@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <img class="w-100" alt="" src="https://media.istockphoto.com/photos/4k-ultra-hd-icon-picture-id512631960?k=20&m=512631960&s=170667a&w=0&h=pjDVHE4D1k2pSznft5bD3waPMc81HS_zbKQ9zqyl4cY=" />
+          <img class="w-100" alt="" src="{{imgPathPrefix + item.id + imgPathSuffix}}" />
         </div>
       </div>
 
@@ -21,10 +21,9 @@
       <div id="reserveForm-{{item.id}}" class="visually-hidden">
         <form #f="ngForm" (ngSubmit)="onReserveItem(f.value, item.id)">
           <div class="form-label">
-            Select User <select name="userId" class="form-control" ngModel>
+            Select User <select name="userId" class="form-control" ngModel *ngIf="users">
             <option value="">None</option>
-            <option value="1">Hamza</option>
-            <option value="2">Ahmed</option>
+            <option value="{{u.id}}" *ngFor="let u of users">{{u.name}}</option>
           </select>
           </div>
           <input type="submit" value="Confirm" class="btn btn-success">

@@ -10,18 +10,14 @@ import {NavigationStart, Router} from "@angular/router";
 })
 export class NavComponent implements OnInit {
 
-  static current_nav:any;
-
   navs:any = [];
 
   constructor(
     private charUtilsService:CharUtilsService,
-    private router:Router
   ) { }
 
   ngOnInit(): void {
     this.onInitNavs();
-    this.onRouteEvent();
   }
 
   onInitNavs() {
@@ -33,16 +29,8 @@ export class NavComponent implements OnInit {
           route:path
         });
       }
-      else NavComponent.current_nav = route.redirectTo;
     }
   }
 
-  onRouteEvent() {
-    this.router.events.subscribe((e:any) => {
-      if(e instanceof NavigationStart) {
-        NavComponent.current_nav = e.url.substr(1);
-      }
-    })
-  }
 
 }
